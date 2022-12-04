@@ -3,8 +3,8 @@ pipeline {
   environment {
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
-    NEXUS_URL = "172.10.0.140:8081"
-    NEXUS_REPOSITORY = "maven-releases"
+    NEXUS_URL = "http://localhost:8081/"
+    NEXUS_REPOSITORY = "nexus_spring"
     NEXUS_CREDENTIAL_ID = "Nexus-Creds"
     DOCKER_CREDENTIAL_ID = "Docker-Creds"
     VERSION = "1.${env.BUILD_NUMBER}"
@@ -97,14 +97,14 @@ pipeline {
     stage('Building Docker Image Spring') {
       steps {
         dir('Spring') {
-          sh 'docker build -t $DOCKER_CREDS_USR/tpachatback .'
+          sh 'docker build -t $DOCKER_CREDS_USR/projet-devops-back .'
         }
       }
     }
     stage('Building Docker Image Angular') {
       steps {
         dir('Angular/crud-tuto-front') {
-          sh 'docker build -t $DOCKER_CREDS_USR/tpachatfront .'
+          sh 'docker build -t $DOCKER_CREDS_USR/projet-devops-front .'
         }
       }
     }
@@ -119,8 +119,8 @@ pipeline {
     stage('Push to DockerHub (Angular and Spring )') {
       steps {
         dir('Spring') {
-          sh 'docker push $DOCKER_CREDS_USR/tpachatback'
-          sh 'docker push $DOCKER_CREDS_USR/tpachatfront'
+          sh 'docker push $DOCKER_CREDS_USR/projet-devops-back'
+          sh 'docker push $DOCKER_CREDS_USR/projet-devops-front'
         }
       }
     }
