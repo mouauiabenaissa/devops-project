@@ -11,7 +11,7 @@ pipeline {
     DOCKER_CREDS = credentials('Docker-Creds')
   }
   tools { 
-        maven 'Maven 3.3.9' 
+        maven 'M3' 
     }
   stages {
 
