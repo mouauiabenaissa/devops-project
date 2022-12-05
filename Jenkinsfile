@@ -10,6 +10,9 @@ pipeline {
     VERSION = "1.${env.BUILD_NUMBER}"
     DOCKER_CREDS = credentials('Docker-Creds')
   }
+  tools { 
+        maven 'Maven 3.3.9' 
+    }
   stages {
 
     stage("Maven Clean") {
