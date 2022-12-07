@@ -34,13 +34,13 @@ pipeline {
         }
       }
     }
-    stage("Maven Sonarqube") {
+    /*stage("Maven Sonarqube") {
       steps {
         script {
           sh "mvn -f'Spring/pom.xml' sonar:sonar -Dsonar.login=admin -Dsonar.password=Admin -Drevision=${VERSION}"
         }
       }
-    }
+    }*/
     stage("Maven Build") {
       steps {
         script {
