@@ -53,6 +53,7 @@ pipeline {
       steps {
         script {
           pom = readMavenPom file: "Spring/pom.xml";
+          echo pom
           filesByGlob = findFiles(glob: "Spring/target/*.${pom.packaging}");
           echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
           artifactPath = filesByGlob[0].path;
