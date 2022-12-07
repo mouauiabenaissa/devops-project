@@ -68,7 +68,7 @@ pipeline {
               groupId: pom.groupId,
               version: VERSION,
               repository: NEXUS_REPOSITORY,
-              credentialsId: NEXUS_CREDENTIAL_ID,
+              credentialsId: 1ef67b53-da11-4351-9d8f-6adf35baeae2,
               artifacts: [
                 [artifactId: pom.artifactId,
                   classifier: '',
