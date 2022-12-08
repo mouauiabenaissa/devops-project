@@ -96,13 +96,6 @@ pipeline {
         }
       }
     }*/
-    stage('Building Docker Image Spring') {
-      steps {
-        dir('Spring') {
-          sh 'docker build -t $DOCKER_CREDS_USR/projet-devops-back .'
-        }
-      }
-    }
     stage('Building Docker Image Angular') {
       steps {
         dir('Angular/crud-tuto-front') {
@@ -118,10 +111,9 @@ pipeline {
         }
       }
     }
-    stage('Push to DockerHub (Angular and Spring )') {
+    stage('Push to DockerHub Angular') {
       steps {
         dir('Spring') {
-          sh 'docker push $DOCKER_CREDS_USR/projet-devops-back'
           sh 'docker push $DOCKER_CREDS_USR/projet-devops-front'
         }
       }
