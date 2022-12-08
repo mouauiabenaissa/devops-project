@@ -49,7 +49,7 @@ pipeline {
         echo ":$BUILD_NUMBER"
       }
     }
-   /* stage("Publish to Nexus Repository Manager") {
+    stage("Publish to Nexus Repository Manager") {
       steps {
         script {
           echo "nexus here"
@@ -86,7 +86,7 @@ pipeline {
           }
         }
       }
-    }
+    }/*
     stage('Pull the file off Nexus') {
       steps {
         dir('Spring') {
@@ -118,11 +118,11 @@ pipeline {
         }
       }
     }
-    stage('Docker Compose') {
+    /*stage('Docker Compose') {
       steps {
         sh 'docker-compose up -d'
       }
     }
-  }
+  }*/
 
 }
