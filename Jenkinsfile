@@ -86,7 +86,8 @@ pipeline {
           }
         }
       }
-    }/*
+    }
+    /*
     stage('Pull the file off Nexus') {
       steps {
         dir('Spring') {
@@ -122,7 +123,7 @@ pipeline {
       steps {
         sh 'docker-compose up -d'
       }
-    }
-  }*/
+    }*/
+  }
 
 }
