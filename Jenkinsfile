@@ -49,7 +49,7 @@ pipeline {
         echo ":$BUILD_NUMBER"
       }
     }
-    stage("Publish to Nexus Repository Manager") {
+   /* stage("Publish to Nexus Repository Manager") {
       steps {
         script {
           echo "nexus here"
@@ -67,7 +67,7 @@ pipeline {
               nexusUrl: NEXUS_URL,
               groupId: pom.groupId,
               version: VERSION,
-              repository: 'http://localhost:8081/repository/nexus_spring/',
+              repository: NEXUS_REPOSITORY,
               artifacts: [
                 [artifactId: pom.artifactId,
                   classifier: '',
@@ -95,7 +95,7 @@ pipeline {
           }
         }
       }
-    }
+    }*/
     stage('Building Docker Image Spring') {
       steps {
         dir('Spring') {
