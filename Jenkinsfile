@@ -67,7 +67,7 @@ pipeline {
               nexusUrl: NEXUS_URL,
               groupId: pom.groupId,
               version: VERSION,
-              repository: NEXUS_REPOSITORY,
+              repository: 'http://localhost:8081/repository/nexus_spring/',
               artifacts: [
                 [artifactId: pom.artifactId,
                   classifier: '',
