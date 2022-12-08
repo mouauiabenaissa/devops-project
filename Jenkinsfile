@@ -73,11 +73,6 @@ pipeline {
                   classifier: '',
                   file: artifactPath,
                   type: pom.packaging
-                ],
-                [artifactId: pom.artifactId,
-                  classifier: '',
-                  file: "Spring/pom.xml",
-                  type: "pom"
                 ]
               ]
             );
