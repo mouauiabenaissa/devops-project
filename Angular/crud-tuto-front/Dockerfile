@@ -4,7 +4,7 @@ FROM node:16.10-alpine3.11
     RUN npm i -g @angular/cli
     
     # Install app dependencies:
-    RUN npm i 
+    RUN npm i -g @angular/cli@11.2.2 npm@latest
     
     COPY . .
     RUN ng build --prod
