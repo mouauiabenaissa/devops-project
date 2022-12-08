@@ -4,7 +4,7 @@ pipeline {
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
     NEXUS_URL = "http://localhost:8081"
-    NEXUS_REPOSITORY = "nexus_spring/"
+    NEXUS_REPOSITORY = "nexus_spring"
     NEXUS_CREDENTIAL_ID = "Nexus-Creds"
     DOCKER_CREDENTIAL_ID = "Docker-Creds"
     VERSION = "1.${env.BUILD_NUMBER}"
@@ -52,25 +52,38 @@ pipeline {
     stage("Publish to Nexus Repository Manager") {
       steps {
         script {
-           pom = readMavenPom file: "Spring/pom.xml";
+          echo "nexus here"
+          pom = readMavenPom file: "Spring/pom.xml";
+          echo "${pom}"
           filesByGlob = findFiles(glob: "Spring/target/*.${pom.packaging}");
           echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
           artifactPath = filesByGlob[0].path;
-          nexusArtifactUploader artifacts: [
-            [
-              artifactId: 'tpAchatProject', 
-              classifier: '', 
-              file: 'artifactPath', 
-              type: 'pom'
-            ]
-          ], 
-          credentialsId: '1ef67b53-da11-4351-9d8f-6adf35baeae2', 
-          groupId: 'com.esprit.examen', 
-          nexusUrl: 'localhost:8081/', 
-          nexusVersion: 'nexus3', 
-          protocol: 'http', 
-          repository: 'http://localhost:8081/repository/nexus_spring/', 
-          version: '1.0.0'
+          artifactExists = fileExists artifactPath;
+          if (artifactExists) {
+            echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${VERSION}";
+            nexusArtifactUploader(
+              nexusVersion: NEXUS_VERSION,
+              protocol: NEXUS_PROTOCOL,
+              nexusUrl: NEXUS_URL,
+              groupId: pom.groupId,
+              version: VERSION,
+              repository: NEXUS_REPOSITORY,
+              artifacts: [
+                [artifactId: pom.artifactId,
+                  classifier: '',
+                  file: artifactPath,
+                  type: pom.packaging
+                ],
+                [artifactId: pom.artifactId,
+                  classifier: '',
+                  file: "Spring/pom.xml",
+                  type: "pom"
+                ]
+              ]
+            );
+          } else {
+            error "*** File: ${artifactPath}, could not be found";
+          }
         }
       }
     }
