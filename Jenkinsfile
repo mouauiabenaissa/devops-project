@@ -4,7 +4,7 @@ pipeline {
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
     NEXUS_URL = "http://localhost:8081"
-    NEXUS_REPOSITORY = "nexus_spring/"
+    NEXUS_REPOSITORY = "nexus_spring"
     NEXUS_CREDENTIAL_ID = "Nexus-Creds"
     DOCKER_CREDENTIAL_ID = "Docker-Creds"
     VERSION = "1.${env.BUILD_NUMBER}"
