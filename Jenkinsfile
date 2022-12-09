@@ -92,7 +92,7 @@ pipeline {
         }
       }
     }*/
-    stage('Building Docker Image Angular') {
+    /*stage('Building Docker Image Angular') {
       steps {
         dir('Angular/crud-tuto-front') {
           sh 'docker build -t $DOCKER_CREDS_USR/projet-devops-front .'
