@@ -63,6 +63,7 @@ pipeline {
             echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${VERSION}";
             nexusArtifactUploader(
               nexusVersion: NEXUS_VERSION,
+              credentialsId: '1ef67b53-da11-4351-9d8f-6adf35baeae2', 
               protocol: NEXUS_PROTOCOL,
               nexusUrl: NEXUS_URL,
               groupId: pom.groupId,
